@@ -9,3 +9,8 @@ In this blog post, we will show you how to leverage Amazon Comprehend as part of
 <p><em> Solution Architecture Overview </em></p>
 <img src="BlogFoto/ComprehendReviewSentimentArchitecture.png" alt="Architecture" title="Amazon Comprehend Review Sentiment Architecture" align="center" />
 
+Let’s take a look at product reviews on Amazon.com and use Amazon Comprehend to classify the sentiment for a given review. We will use the Amazon Echo, Amazon Echo Dot, and the Amazon Echo Show reviews as examples. We will then upload additional fake sample data, in an attempt to prevent tarnishing a brand, and simulate retrieving negative product sentiment with nuanced information such as defective, damaged, or hazardous items that are on recall. Finally, we will place the business in a position to take immediate action by using Amazon Athena to interactively query for the negative reviews and export the report.
+
+Review Upload: User will upload customer review in text format to the Customer Review bucket. 
+
+Customer Review Sentiment Analysis Function: The secure review upload is used as an Amazon S3 event to trigger the Review Sentiment Analysis function that downloads the review to a temporary file, calls Amazon Comprehend to run text analytics against it, and then outputs the overall sentiment along with the positive, negative, neutral, and mixed confidence scores to a CSV file. The CSV file with the sentiment is stored in a sentiment folder of the same Customer Review bucket.
