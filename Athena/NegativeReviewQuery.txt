@@ -1,0 +1,2 @@
+SELECT * FROM default.ReviewSentimentAnalysis WHERE sentiment='NEGATIVE'
+ORDER BY negative DESC

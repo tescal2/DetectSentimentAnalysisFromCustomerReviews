@@ -1,0 +1,760 @@
+{
+  "version":"2.0",
+  "metadata":{
+    "apiVersion":"2017-01-01",
+    "endointPrefix":"deepinsight",
+    "endpointPrefix":"deepinsight",
+    "jsonVersion":"1.1",
+    "protocol":"json",
+    "serviceFullName":"AWS DeepInsight",
+    "signatureVersion":"v4",
+    "targetPrefix":"DeepInsight_20170101",
+    "uid":"deepinsight-2017-01-01"
+  },
+  "operations":{
+    "DescribeTopicsDetectionJob":{
+      "name":"DescribeTopicsDetectionJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTopicsDetectionJobRequest"},
+      "output":{"shape":"DescribeTopicsDetectionJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"JobNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "documentation":"Describes the Topic Detection Job identified by the provided name. It includes the job status. Job metadata is available for 90 days after they are submitted after which they are expired."
+    },
+    "DetectDominantLanguage":{
+      "name":"DetectDominantLanguage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DetectDominantLanguageRequest"},
+      "output":{"shape":"DetectDominantLanguageResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TextSizeLimitExceededException"},
+        {"shape":"InvalidEncodingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "documentation":"Detect dominant language for a given text. Return a list of possible dominant languages that are predicted by model."
+    },
+    "DetectEntities":{
+      "name":"DetectEntities",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DetectEntitiesRequest"},
+      "output":{"shape":"DetectEntitiesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TextSizeLimitExceededException"},
+        {"shape":"InvalidEncodingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "documentation":"Inspects the given text for known entities, and returns information about those entities"
+    },
+    "DetectKeyPhrases":{
+      "name":"DetectKeyPhrases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DetectKeyPhrasesRequest"},
+      "output":{"shape":"DetectKeyPhrasesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TextSizeLimitExceededException"},
+        {"shape":"InvalidEncodingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "documentation":"Detect the key phrases in the text that are most indicative of the content"
+    },
+    "DetectSentiment":{
+      "name":"DetectSentiment",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DetectSentimentRequest"},
+      "output":{"shape":"DetectSentimentResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TextSizeLimitExceededException"},
+        {"shape":"InvalidEncodingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "documentation":"Inspects the given text and detects the prevailing emotional opinion within the text"
+    },
+    "ListTopicsDetectionJobs":{
+      "name":"ListTopicsDetectionJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTopicsDetectionJobsRequest"},
+      "output":{"shape":"ListTopicsDetectionJobsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidFilterException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "documentation":"Lists existing jobs for detecting topics."
+    },
+    "StartTopicsDetectionJob":{
+      "name":"StartTopicsDetectionJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartTopicsDetectionJobRequest"},
+      "output":{"shape":"StartTopicsDetectionJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "documentation":"Starts a job for detecting topics."
+    },
+    "StopTopicsDetectionJob":{
+      "name":"StopTopicsDetectionJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopTopicsDetectionJobRequest"},
+      "output":{"shape":"StopTopicsDetectionJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"JobNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "documentation":"Stops the topic detection job identified by the provided job name. It abandons any training in progress."
+    }
+  },
+  "shapes":{
+    "BoundedLengthString":{
+      "type":"string",
+      "max":100000,
+      "min":1
+    },
+    "ClientRequestTokenString":{
+      "type":"string",
+      "max":64
+    },
+    "DescribeTopicsDetectionJobRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{
+          "shape":"String",
+          "documentation":"The Id of the job"
+        }
+      }
+    },
+    "DescribeTopicsDetectionJobResponse":{
+      "type":"structure",
+      "members":{
+        "TopicsDetectionJobProperties":{
+          "shape":"TopicsDetectionJobProperties",
+          "documentation":"Detect job properties"
+        }
+      }
+    },
+    "DetectDominantLanguageRequest":{
+      "type":"structure",
+      "required":["Text"],
+      "members":{
+        "Text":{
+          "shape":"BoundedLengthString",
+          "documentation":"The text content to be analyzed"
+        }
+      }
+    },
+    "DetectDominantLanguageResponse":{
+      "type":"structure",
+      "members":{
+        "Languages":{
+          "shape":"ListOfDominantLanguages",
+          "documentation":"List of dominant languages given input text"
+        }
+      }
+    },
+    "DetectEntitiesRequest":{
+      "type":"structure",
+      "required":["Text"],
+      "members":{
+        "Text":{
+          "shape":"BoundedLengthString",
+          "documentation":"The text content to be analyzed"
+        },
+        "LanguageCode":{
+          "shape":"String",
+          "documentation":"Optional. The dominant language for text content"
+        }
+      }
+    },
+    "DetectEntitiesResponse":{
+      "type":"structure",
+      "members":{
+        "Entities":{
+          "shape":"ListOfEntities",
+          "documentation":"A list of detected entities"
+        },
+        "LanguageCode":{
+          "shape":"String",
+          "documentation":"Dominant language for given input text"
+        }
+      }
+    },
+    "DetectKeyPhrasesRequest":{
+      "type":"structure",
+      "required":["Text"],
+      "members":{
+        "Text":{
+          "shape":"BoundedLengthString",
+          "documentation":"The text content to be analyzed"
+        },
+        "LanguageCode":{
+          "shape":"String",
+          "documentation":"Optional. The dominant language for text content"
+        }
+      }
+    },
+    "DetectKeyPhrasesResponse":{
+      "type":"structure",
+      "members":{
+        "KeyPhrases":{
+          "shape":"ListOfKeyPhrases",
+          "documentation":"A list of detected key phrases"
+        },
+        "LanguageCode":{
+          "shape":"String",
+          "documentation":"Dominant language for given input text"
+        }
+      }
+    },
+    "DetectSentimentRequest":{
+      "type":"structure",
+      "required":["Text"],
+      "members":{
+        "Text":{
+          "shape":"BoundedLengthString",
+          "documentation":"The text content to be analyzed"
+        },
+        "LanguageCode":{
+          "shape":"String",
+          "documentation":"Optional. The dominant language for text content"
+        }
+      }
+    },
+    "DetectSentimentResponse":{
+      "type":"structure",
+      "members":{
+        "Sentiment":{
+          "shape":"SentimentType",
+          "documentation":"The sentiment with the highest ratio for text content"
+        },
+        "SentimentScore":{
+          "shape":"SentimentScore",
+          "documentation":"The text sentiment score for each category"
+        },
+        "LanguageCode":{
+          "shape":"String",
+          "documentation":"Dominant language for given input text"
+        }
+      }
+    },
+    "DominantLanguage":{
+      "type":"structure",
+      "members":{
+        "LanguageCode":{
+          "shape":"String",
+          "documentation":"Language ISO-639-2 code"
+        },
+        "Score":{
+          "shape":"Float",
+          "documentation":"Confidence score of language being the dominant one in the text"
+        }
+      },
+      "documentation":"Dominant language complex object"
+    },
+    "Entity":{
+      "type":"structure",
+      "members":{
+        "Score":{
+          "shape":"Float",
+          "documentation":"Confidence score of detected entity"
+        },
+        "Type":{
+          "shape":"EntityType",
+          "documentation":"The type of entity"
+        },
+        "Text":{
+          "shape":"String",
+          "documentation":"The value of entity"
+        },
+        "BeginOffset":{
+          "shape":"Integer",
+          "documentation":"The beginning character offset of the entity"
+        },
+        "EndOffset":{
+          "shape":"Integer",
+          "documentation":"The end character offset of the entity"
+        }
+      },
+      "documentation":"Entity complext object"
+    },
+    "EntityType":{
+      "type":"string",
+      "enum":[
+        "PERSON",
+        "LOCATION",
+        "ORGANIZATION",
+        "PRODUCT_TYPE",
+        "BRAND",
+        "COMMERCIAL_ITEM",
+        "TITLE",
+        "EVENT",
+        "DATE",
+        "QUANTITY",
+        "SCIENCE",
+        "TECHNOLOGY",
+        "OTHERS"
+      ]
+    },
+    "FailureReason":{
+      "type":"string",
+      "enum":[
+        "TOO_MANY_RUNNING_JOBS",
+        "ACCESS_DENIED",
+        "INVALID_DATA_FORMAT",
+        "DATA_SIZE_EXCEEDED"
+      ]
+    },
+    "Float":{"type":"float"},
+    "IamRoleArn":{
+      "type":"string",
+      "pattern":"arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+"
+    },
+    "InputDataConfig":{
+      "type":"structure",
+      "required":["S3Config"],
+      "members":{
+        "S3Config":{
+          "shape":"S3Config",
+          "documentation":"S3-based input data configuration"
+        },
+        "InputFormat":{
+          "shape":"InputFormat",
+          "documentation":"Indicates the input format of the documents."
+        }
+      },
+      "documentation":"Input data config (specification)"
+    },
+    "InputFormat":{
+      "type":"string",
+      "enum":[
+        "ONE_DOC_PER_FILE",
+        "ONE_DOC_PER_LINE",
+        "ONE_DOC_PER_AVRO_RECORD"
+      ]
+    },
+    "Integer":{"type":"integer"},
+    "InternalServerException":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "documentation":"Detailed error message"
+        }
+      },
+      "documentation":"The request processing has failed because of an unknown error, exception or failure.",
+      "exception":true
+    },
+    "InvalidEncodingException":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "documentation":"Detailed error message"
+        }
+      },
+      "documentation":"Input text encodine is not UTF-8",
+      "exception":true
+    },
+    "InvalidFilterException":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "documentation":"Detailed error message"
+        }
+      },
+      "documentation":"One or more parameters did not meet the constraints of the TopicsDetectionJobFilter",
+      "exception":true
+    },
+    "InvalidRequestException":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "documentation":"Detailed error message"
+        }
+      },
+      "documentation":"An invalid or out-of-range value was supplied for the input parameter.",
+      "exception":true
+    },
+    "JobNotFoundException":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "documentation":"Detailed error message"
+        }
+      },
+      "documentation":"The job with the given JobId was not found.",
+      "exception":true
+    },
+    "JobStatus":{
+      "type":"string",
+      "enum":[
+        "SUBMITTED",
+        "IN_PROGRESS",
+        "COMPLETED",
+        "FAILED",
+        "STOPPING"
+      ]
+    },
+    "KeyPhrase":{
+      "type":"structure",
+      "members":{
+        "Score":{
+          "shape":"Float",
+          "documentation":"Confidence score of detected key phrase"
+        },
+        "Text":{
+          "shape":"String",
+          "documentation":"Key phrase text value"
+        },
+        "BeginOffset":{
+          "shape":"Integer",
+          "documentation":"The beginning character offset of the key phrase"
+        },
+        "EndOffset":{
+          "shape":"Integer",
+          "documentation":"The end character offset of the key phrase"
+        }
+      },
+      "documentation":"Key phrase complex object"
+    },
+    "ListOfDominantLanguages":{
+      "type":"list",
+      "member":{"shape":"DominantLanguage"}
+    },
+    "ListOfEntities":{
+      "type":"list",
+      "member":{"shape":"Entity"}
+    },
+    "ListOfKeyPhrases":{
+      "type":"list",
+      "member":{"shape":"KeyPhrase"}
+    },
+    "ListTopicsDetectionJobsRequest":{
+      "type":"structure",
+      "members":{
+        "Filter":{
+          "shape":"TopicsDetectionJobFilter",
+          "documentation":"Filters to apply for the ListTopicsDetectionJobs"
+        },
+        "NextToken":{
+          "shape":"String",
+          "documentation":"Next pagination token"
+        },
+        "MaxResults":{
+          "shape":"MaxResultsInteger",
+          "documentation":"Max results count. Upper-bound: 500"
+        }
+      }
+    },
+    "ListTopicsDetectionJobsResponse":{
+      "type":"structure",
+      "members":{
+        "TopicsDetectionJobPropertiesList":{
+          "shape":"TopicsDetectionJobPropertiesList",
+          "documentation":"List of detect topics job properties"
+        },
+        "NextToken":{
+          "shape":"String",
+          "documentation":"Next pagination token"
+        }
+      }
+    },
+    "MaxResultsInteger":{
+      "type":"integer",
+      "max":500,
+      "min":1
+    },
+    "NumberOfTopicsInteger":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
+    "OutputDataConfig":{
+      "type":"structure",
+      "required":["S3Config"],
+      "members":{
+        "S3Config":{
+          "shape":"S3Config",
+          "documentation":"S3-based output data configuration"
+        },
+        "OutputFormat":{
+          "shape":"OutputFormat",
+          "documentation":"Indicates the output format for the Topics."
+        }
+      },
+      "documentation":"Output data config (specification)"
+    },
+    "OutputFormat":{
+      "type":"string",
+      "enum":[
+        "JSON",
+        "CSV"
+      ]
+    },
+    "S3Config":{
+      "type":"structure",
+      "required":[
+        "S3BucketName",
+        "S3ObjectPrefix"
+      ],
+      "members":{
+        "S3BucketName":{
+          "shape":"String",
+          "documentation":"Name of the s3 bucket"
+        },
+        "S3ObjectPrefix":{
+          "shape":"String",
+          "documentation":"S3 object prefix"
+        },
+        "KMSMasterKeyArn":{
+          "shape":"String",
+          "documentation":"This is the customer master key arn in KMS that was used to encrypt/decrypt the data."
+        }
+      },
+      "documentation":"S3 data config (specification)"
+    },
+    "SentimentScore":{
+      "type":"structure",
+      "members":{
+        "Positive":{
+          "shape":"Float",
+          "documentation":"Confidence score of sentiment being positive"
+        },
+        "Negative":{
+          "shape":"Float",
+          "documentation":"Confidence score of sentiment being negative"
+        },
+        "Neutral":{
+          "shape":"Float",
+          "documentation":"Confidence score of sentiment being neutral"
+        }
+      },
+      "documentation":"Sentiment score object"
+    },
+    "SentimentType":{
+      "type":"string",
+      "enum":[
+        "POSITIVE",
+        "NEGATIVE",
+        "NEUTRAL"
+      ]
+    },
+    "ServiceUnavailableException":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "documentation":"Detailed error message"
+        }
+      },
+      "documentation":"The request has failed due to a temporary failure of the server.",
+      "exception":true
+    },
+    "StartTopicsDetectionJobRequest":{
+      "type":"structure",
+      "required":[
+        "InputDataConfig",
+        "OutputDataConfig",
+        "DataAccessRoleArn"
+      ],
+      "members":{
+        "InputDataConfig":{
+          "shape":"InputDataConfig",
+          "documentation":"Input data location. It must include at least one valid source of data"
+        },
+        "OutputDataConfig":{
+          "shape":"OutputDataConfig",
+          "documentation":"Output data location"
+        },
+        "DataAccessRoleArn":{
+          "shape":"IamRoleArn",
+          "documentation":"This role needs to have permissions to access S3"
+        },
+        "NumberOfTopics":{
+          "shape":"NumberOfTopicsInteger",
+          "documentation":"Number of distinct topics that needs to be detected. Default is 10"
+        },
+        "ClientRequestToken":{
+          "shape":"ClientRequestTokenString",
+          "documentation":"String of up to 64 ASCII characters. DeepInsight uses this to ensure idempotent job creation.",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartTopicsDetectionJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{
+          "shape":"String",
+          "documentation":"Id of the job"
+        },
+        "JobStatus":{
+          "shape":"JobStatus",
+          "documentation":"Status of the training job."
+        }
+      }
+    },
+    "StopTopicsDetectionJobRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{
+          "shape":"String",
+          "documentation":"The Id of the job"
+        }
+      }
+    },
+    "StopTopicsDetectionJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobStatus":{
+          "shape":"JobStatus",
+          "documentation":"Status of the training job."
+        }
+      }
+    },
+    "String":{
+      "type":"string",
+      "min":1
+    },
+    "TextSizeLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "documentation":"Detailed error message"
+        }
+      },
+      "documentation":"Input text size exceeds the limit",
+      "exception":true
+    },
+    "Timestamp":{"type":"timestamp"},
+    "TooManyRequestsException":{
+      "type":"structure",
+      "members":{
+        "Message":{
+          "shape":"String",
+          "documentation":"Detailed error message"
+        }
+      },
+      "documentation":"The request was denied due to request throttling.",
+      "exception":true
+    },
+    "TopicsDetectionJobFilter":{
+      "type":"structure",
+      "members":{
+        "JobStatus":{
+          "shape":"JobStatus",
+          "documentation":"Filters the job by JobStatus"
+        },
+        "SubmitTimeBefore":{
+          "shape":"Timestamp",
+          "documentation":"Returns the jobs submitted before this timestamp."
+        },
+        "SubmitTimeAfter":{
+          "shape":"Timestamp",
+          "documentation":"Returns the jobs submitted after this timestamp."
+        }
+      },
+      "documentation":"Filters which can be applied for list jobs API. Exactly one option is required."
+    },
+    "TopicsDetectionJobProperties":{
+      "type":"structure",
+      "members":{
+        "JobId":{
+          "shape":"String",
+          "documentation":"Id of the job."
+        },
+        "JobStatus":{
+          "shape":"JobStatus",
+          "documentation":"Status of the training job."
+        },
+        "Message":{
+          "shape":"String",
+          "documentation":"A human readable message which has more information about the current status, useful for debugging. Also contains the error message."
+        },
+        "FailureReason":{
+          "shape":"FailureReason",
+          "documentation":"Job failure reason."
+        },
+        "FailedObject":{
+          "shape":"String",
+          "documentation":"If the failure is due to a specific object, this will contain the reference to the object. S3 URI in the case of s3 objects."
+        },
+        "SubmitTime":{
+          "shape":"Timestamp",
+          "documentation":"Job submission time"
+        },
+        "EndTime":{
+          "shape":"Timestamp",
+          "documentation":"Job end time"
+        },
+        "LastUpdatedTime":{
+          "shape":"Timestamp",
+          "documentation":"Last updated time"
+        },
+        "InputDataConfig":{
+          "shape":"InputDataConfig",
+          "documentation":"Input data location. It must include at least one valid source of data"
+        },
+        "OutputDataConfig":{
+          "shape":"OutputDataConfig",
+          "documentation":"Output data location"
+        },
+        "NumberOfTopics":{
+          "shape":"Integer",
+          "documentation":"Number of distinct topics that needs to be detected"
+        }
+      },
+      "documentation":"Summarization of the TopicsDetection Job."
+    },
+    "TopicsDetectionJobPropertiesList":{
+      "type":"list",
+      "member":{"shape":"TopicsDetectionJobProperties"}
+    }
+  },
+  "documentation":"AWS DeepInsight service"
+}

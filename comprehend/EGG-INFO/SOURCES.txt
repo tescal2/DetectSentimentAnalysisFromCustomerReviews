@@ -1,0 +1,10 @@
+README.md
+setup.cfg
+setup.py
+Botocore_deepinsight_beta.egg-info/PKG-INFO
+Botocore_deepinsight_beta.egg-info/SOURCES.txt
+Botocore_deepinsight_beta.egg-info/dependency_links.txt
+Botocore_deepinsight_beta.egg-info/top_level.txt
+botocore_deepinsight_beta/__init__.py
+models/deepinsight/2017-01-01/service-2.json
+test/test_botocore_deepinsight_beta.py
