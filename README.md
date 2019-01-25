@@ -17,42 +17,13 @@ Customer Review Sentiment Analysis Function: The secure review upload is used as
 
 Interactive SQL Query:  Amazon Athena is used to query the review results and focus in on the negative sentiment.
 
-Step by Step Configuration
-We will start off by deploying an AWS CloudFormation template to provision the necessary AWS Identity and Access Management (IAM) role and Lambda function needed in order to interact with the Amazon S3, AWS Lambda, and Amazon Comprehend APIs.
+<strong>  Step by Step Configuration can be found on the AWS Machine Learning Blog <a href="https://aws.amazon.com/blogs/machine-learning/detect-sentiment-from-customer-reviews-using-amazon-comprehend/"> here </a> <strong> 
 
-<img src="BlogFoto/CF_Launch.png" />
+Conclusion
+In summation, Amazon Comprehend gives you deep insight into customer feedback by allowing shifting opinions and overall sentiment to be identified quickly, which reduces the time and effort to understand customers. This also presents the opportunity for immediate adaptations to be applied in order to meet the dynamically changing needs of customers.
 
-[1] In the CloudFormation console, choose the Launch Stack button (above). If interested, you can view the YAML template here.
-[2] Choose Next on the Select Template page.
-[3] Choose Next on the Specify Details page.
-[4] On the Options page, leave all the defaults and Choose Next.
-[5] On the Review page, check the boxes to acknowledge that CloudFormation will create IAM resources and IAM resources with customer names.
-[6] Choose Create Change Set.
+Training NLP is difficult and can be very expensive. There are many obstacles in the path to capturing true sentiment, such as language ambiguity through cryptic dialogue, sarcasm, and irony, as well as the symbolic expressions of emoji’s which may not be analyzed in a pure text capture. All of these obstacles can make sentiment more difficult to understand and, therefore, may impact the quality of result you receive. Even with a large data set of unstructured sentiment rich-text and the right analytics, successfully reacting to or predicting customer needs can take a considerable amount of effort. This requires businesses to possess the skills and expertise required to build efficient machine learning (ML) models that contain the optimal algorithms used to train accurate sentiment classifiers and then apply ML techniques to further reduce systematic inaccuracies while improving upon the model over time through continuous feedback loops.
 
-Note: The CloudFormation template we’ve provided is written using AWS Serverless Application Model (AWS SAM). AWS SAM simplifies how to define functions, APIs, etc. for serverless applications, as well as some features for these services like environment variables. When deploying SAM templates in CloudFormation template, a transform step is required to convert the SAM template into standard CloudFormation, thus you must choose the Create Change Set button to make the transform happen.
+Amazon Comprehend abstracts the undifferentiated heavy lifting needed from data scientist and allows you to easily integrate the service into your application or analytics solutions. In addition, you can query millions of reviews at a time on AWS and then present only the relevant information. There are many ways to gather textual information outside of our use case, such as performing real time ingestion of data via Amazon Kinesis or scheduled events in Amazon CloudWatch. Furthermore, there are many other insights you can gain into your textual data once you’ve extracted and analyzed sentiment. For example, you can load new strings of your data into your data warehouse such as Amazon Redshift, view the data within a Business Intelligence (BI) tool such as Amazon QuickSight or copy negative sentiment reviews into an S3 bucket that triggers our Simple Notification Service (SNS) to notify your customer service team.
 
-[7] Wait a few seconds for the change set to finish computing changes. Your screen should look as follows:
-
-<img src="BlogFoto/CreateChangeSet.jpg" />
-
-[8] Finally, choose Execute and then let the CloudFormation launch resources in the background. You don’t need to wait for it to finish before proceeding to the next step.
-
-<p><em> Amazon Simple Storage Service (S3) bucket event trigger: </em></p>
-
-Now that you have your IAM role, Lambda function, and S3 bucket deployed, let’s make sure that we create an S3 event trigger for your Comprehend Sentiment Analysis function.
-
-[1] Open the Amazon S3 console and select new S3 bucket that begins with ‘review-sentiment.’
-[2] Choose the Properties Under the Advanced Settings section, choose the Events box.
-[3] Choose + Add notification and configure the following:
-  (a) Name: SentimentAnalysis
-  (b) Events: ObjectCreate (All)
-  (c) Suffix: .txt
-  (d) Send to: Lambda Function
-  (e) Lambda: review-sentiment-ComprehendSentimentAnalysis-XYZ
-[4] Choose Save.
-
-<img src="BlogFoto/S3EventConfirmation.png" />
-
-
-
-
+Doing all of this in a serverless architecture allows you to write and run code without ever thinking about servers. After all, writing business logic should be the only code you write. As always, we will continue to iterate on our models in true agile fashion. Please keep the feedback coming. Now let your imagination run free and go #BuildOnAWS!
