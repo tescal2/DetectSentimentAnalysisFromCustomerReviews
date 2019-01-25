@@ -1,4 +1,4 @@
-# Detect sentiment from customer reviews using Amazon Comprehend
+<center> # Detect sentiment from customer reviews using Amazon Comprehend </center> 
 
 <p> In today’s world, public content has never been more relevant. Data from customer reviews is being used as a tool to gain insight into consumption-related decisions as the understanding of its associated sentiment grants businesses invaluable market awareness and the ability to proactively address issues early.
 
