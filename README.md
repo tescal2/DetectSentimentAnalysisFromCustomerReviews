@@ -14,3 +14,12 @@ Let’s take a look at product reviews on Amazon.com and use Amazon Comprehend t
 Review Upload: User will upload customer review in text format to the Customer Review bucket. 
 
 Customer Review Sentiment Analysis Function: The secure review upload is used as an Amazon S3 event to trigger the Review Sentiment Analysis function that downloads the review to a temporary file, calls Amazon Comprehend to run text analytics against it, and then outputs the overall sentiment along with the positive, negative, neutral, and mixed confidence scores to a CSV file. The CSV file with the sentiment is stored in a sentiment folder of the same Customer Review bucket.
+
+Interactive SQL Query:  Amazon Athena is used to query the review results and focus in on the negative sentiment.
+
+Step by Step Configuration
+We will start off by deploying an AWS CloudFormation template to provision the necessary AWS Identity and Access Management (IAM) role and Lambda function needed in order to interact with the Amazon S3, AWS Lambda, and Amazon Comprehend APIs.
+
+<img src="BlogFoto/CF_Launch.png" />
+
+
