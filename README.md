@@ -6,7 +6,7 @@ Sentiment analysis uses a process to computationally determine whether a piece o
 
 In this blog post, we will show you how to leverage Amazon Comprehend as part of a serverless event driven architecture, built with AWS services, to detect customer sentiment. </p>
 
-<p><em> Solution Architecture Overview </em></p>
+<p><strong> Solution Architecture Overview </strong></p>
 <img src="BlogFoto/ComprehendReviewSentimentArchitecture.png" alt="Architecture" title="Amazon Comprehend Review Sentiment Architecture" align="center" />
 
 Let’s take a look at product reviews on Amazon.com and use Amazon Comprehend to classify the sentiment for a given review. We will use the Amazon Echo, Amazon Echo Dot, and the Amazon Echo Show reviews as examples. We will then upload additional fake sample data, in an attempt to prevent tarnishing a brand, and simulate retrieving negative product sentiment with nuanced information such as defective, damaged, or hazardous items that are on recall. Finally, we will place the business in a position to take immediate action by using Amazon Athena to interactively query for the negative reviews and export the report.
@@ -17,7 +17,7 @@ Customer Review Sentiment Analysis Function: The secure review upload is used as
 
 Interactive SQL Query:  Amazon Athena is used to query the review results and focus in on the negative sentiment.
 
-<strong>  Step by Step Configuration can be found on the AWS Machine Learning Blog <a href="https://aws.amazon.com/blogs/machine-learning/detect-sentiment-from-customer-reviews-using-amazon-comprehend/"> here </a> <strong> 
+<strong>  Step by Step Configuration can be found on the AWS Machine Learning Blog <a href="https://aws.amazon.com/blogs/machine-learning/detect-sentiment-from-customer-reviews-using-amazon-comprehend/"> here </a> </strong> 
 
 Conclusion
 In summation, Amazon Comprehend gives you deep insight into customer feedback by allowing shifting opinions and overall sentiment to be identified quickly, which reduces the time and effort to understand customers. This also presents the opportunity for immediate adaptations to be applied in order to meet the dynamically changing needs of customers.
